@@ -4,7 +4,6 @@ Flask-RESTful==0.3.4
 Flask-Cache==0.13.1
 decorator==3.4.2
 SQLAlchemy==1.0.8
-MySQL-python==1.2.5
 pytz==2015.4
 coverage==3.7.1
 enum34==1.0.4
