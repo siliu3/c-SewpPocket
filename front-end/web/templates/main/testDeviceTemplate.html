@@ -1,0 +1,163 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">我的设备</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="input-append">
+    <input type="text" class="span2 search-query" id="sid">
+    <button class="btn btn-primary" type="button" id="searchbtn">查询</button>
+    <label style="color:#cccccc">请输入设备编号</label>
+</div>
+<div class="row">
+    <div class="col-md-12 column">
+        <a class="btn btn-primary" href="#modal-new-device" role="button" data-toggle="modal">添加</a>
+        <div class="modal fade" id="modal-new-device">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">添加设备</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="feedback-form" class="table-form">
+                            <div class="input-group">
+                                <span class="input-group-addon">设备编号</span> 
+                                <input id="new-device-devccode" type="text" class="form-control" placeholder="xxx0111">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">地段</span> 
+                                <input id="new-device-section" type="text" class="form-control" placeholder="大学城">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">位置</span> 
+                                <input id="new-device-location" type="text" class="form-control" placeholder="数字家庭基地">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">建筑分类</span> 
+                                <select id="new-device-cnsntype" class="form-control">
+                                    <option value="0">购物中心</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">禁播类型</span> 
+                                <select id="new-device-frbdads" class="form-control">
+                                    <option value="0">汽车广告</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">禁播例外</span> 
+                                <input id="new-device-excncorps" type="text" class="form-control" placeholder="丰田,本田">
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">复位楼层</span> 
+                                <select id="new-device-restfloor" class="form-control">
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">无挡片楼层</span> 
+                                <input id="new-device-nomaskfloor" type="text" class="form-control" placeholder="1,2,3">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-default" data-dismiss="modal">关闭</a>
+                        <a class="btn btn-primary" id='btn-new-device-commit'>确定添加</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-edit-device">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">编辑设备</h4>
+            </div>
+            <div class="modal-body">
+                设备编号：<input type="text" id="edit-devccode"/><br/>
+                硬件版本：<input type="text" id="edit-hwversion"/><br/>
+                软件版本：<input type="text" id="edit-swversion"/>
+                <input type="text" id="idvalue"/>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" data-dismiss="modal">关闭</a>
+                <a class="btn btn-primary" id='btn-edit-device-commit'>保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-md-12 column device-list">
+        <div class="panel panel-default">
+            <div class="list-group">
+
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>设备编号</th>
+                            <th>地段</th>
+                            <th>位置</th>
+                            <th>
+                                <select id="cnsntypeid" class="form-control">
+                                    <option value="0">建筑类型</option>
+                                    <option value="1">写字楼</option>
+                                    <option value="2">小区</option>
+                                </select>
+                            </th>
+                            <th>软件版本</th>
+                            <th>硬件版本</th>
+                            <th>信号强度</th>
+                            <th>
+                                <select id="statusid" class="form-control">
+                                    <option value="0">审核状态</option>
+                                    <option value="1">审核中</option>
+                                    <option value="2">已通过</option>
+                                </select>
+                            </th>
+                            <th>管理</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <script type="text/html" id="devices_table_tmpl">
+                            <% _.each(devices, function(device){ %>
+                                
+                                <tr>
+                                    <td><%= device.get('devccode')%></td>
+                                    <td><%= device.get('section')%></td>
+                                    <td><%= device.get('location')%></td>
+                                    <td><%= device.get('cnsntype')%></td>
+                                    <td><%= device.get('swversion')%></td>
+                                    <td><%= device.get('hwversion')%></td>
+                                    <td><%= device.get('signals')%></td>
+                                    <td><%= device.get('status')%></td>
+                                    <td>
+                                        <a href="device/<%= device.get('id')%>" data-toggle="page">详情</a>
+                                    </td>
+                                </tr>
+                                
+                                <% }); %>
+                        </script>
+                    </tbody>
+                    
+                </table>
+
+                <div id="page-selection"></div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+

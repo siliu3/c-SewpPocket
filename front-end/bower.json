@@ -1,0 +1,26 @@
+{
+  "name": "front-end",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bigyuki/c-SewpPocket",
+  "authors": [
+    "BigYuki <bigyuki@yeah.net>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/js/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "jquery.cookie": "~1.4.1",
+    "requirejs": "~2.1.20",
+    "startbootstrap-sb-admin-2": "~1.0.7",
+    "text": "requirejs-text#~2.0.14"
+  }
+}
