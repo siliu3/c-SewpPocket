@@ -23,6 +23,7 @@ define([
       events:{
         // 'click .login-method button' : 'loginMethodClick',
         'click #btn-login-commit'    : 'login',
+        'submit #login-form'                : 'login'
         // 'click #btn-new-user-commit' : 'regist',
       },
 
@@ -70,6 +71,7 @@ define([
       // },
 
       login : function(e){
+        e.preventDefault();  
         var that = this;
         // var loginType = $(".login-method .active").val();
 
