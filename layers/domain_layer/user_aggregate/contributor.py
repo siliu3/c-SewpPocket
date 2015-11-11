@@ -45,3 +45,8 @@ class Contributor(Consumer):
                 request = post.get_request(request_id)
                 request.set_refuse()
                 return request
+
+    def get_post(self,post_id):
+        for post in self.posts:
+            if post.id == post_id:
+                return post

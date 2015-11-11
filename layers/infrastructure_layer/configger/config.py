@@ -10,6 +10,8 @@ class BasicConfig(object):
     DATABASE_URI = 'sqlite:///: memory:'
     TIME_ZONE = timezone('Asia/Shanghai')
 
+
+
     FLASK_CONFIG = {
         'LOGGER_NAME': 'flask.mvc',
         'PROPAGATE_EXCEPTIONS': True

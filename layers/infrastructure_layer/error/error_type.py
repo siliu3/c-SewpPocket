@@ -21,3 +21,15 @@ class WrongSecretKeyError(ForbiddenError):
     def __init__(self, msg):
         self.error_code = error_code.ERROR_SECRET_KEY
         self.msg = msg
+
+class NotARegulatorError(ForbiddenError):
+
+    def __init__(self, msg):
+        self.error_code = error_code.NO_PERMISSION
+        self.msg = msg
+
+class RequestSelfPostError(ForbiddenError):
+
+    def __init__(self, msg):
+        self.error_code = error_code.NO_PERMISSION
+        self.msg = msg

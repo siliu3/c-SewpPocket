@@ -26,3 +26,6 @@ class UserRepository(Repository):
 
     def get_consumer(self,user_id):
         return self.session.query(Consumer).get(user_id)
+
+    def get_user(self,user_id):
+        return self.session.query(User).get(user_id)

@@ -10,12 +10,9 @@ from layers.domain_layer.repositories import UserRepository,TokenRepository
 from layers.domain_layer.repositories import AccountRepository,PostRepository
 
 from layers.infrastructure_layer.context import Transaction_
-
-class ConsumerActor(object):
-
-    def __init__(self, access_token):
-        self._access_token = access_token
-        self._user_id = AuthSystem().token_to_user_id(access_token)
+from layers.infrastructure_layer.error.error_type import RequestSelfPostError
+from user_actor import  UserActor
+class ConsumerActor(UserActor):
 
     def get_account(self):
         account_username = AuthSystem().token_to_account_username(
@@ -44,6 +41,9 @@ class ConsumerActor(object):
 
     @Transaction_
     def make_post_request(self,post_id):
+        if self.get_consumer().is_contributor:
+            if UserRepository().get_contributor(self._user_id).get_post(post_id)!=None:
+                raise RequestSelfPostError("You can not make a request for your own post!")
         consumer = self.get_consumer()
         return consumer.make_request(post_id)
 

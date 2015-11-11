@@ -16,12 +16,12 @@ def Map_Account_Aggregation_Table():
 def Map_User_Aggregation_Table():
     mapper(User, USER_TABLE,
             polymorphic_on=USER_TABLE.c.user_type,
-            polymorphic_identity="USER"
+            polymorphic_identity=User.USER_IDENTITY
     )
     mapper(
         Consumer, CONSUMER_TABLE,
         inherits=User,
-        polymorphic_identity="CONSUMER",
+        polymorphic_identity=User.CONSUMER_IDENTITY,
         properties={
             'requests': relationship(
                 Request,
@@ -35,7 +35,7 @@ def Map_User_Aggregation_Table():
     mapper(
         Contributor, CONTRIBUTOR_TABLE,
         inherits=Consumer,
-        polymorphic_identity="CONTRIBUTOR",
+        polymorphic_identity=User.CONTRIBUTOR_IDENTITY,
         properties={
             'posts': relationship(
                 Post,
@@ -49,7 +49,7 @@ def Map_User_Aggregation_Table():
     mapper(
         Regulator, REGULATOR_TABLE,
         inherits=Contributor,
-        polymorphic_identity="REGULATOR"
+        polymorphic_identity=User.REGULATOR_IDENTITY
     )
 
     mapper(
@@ -60,7 +60,8 @@ def Map_User_Aggregation_Table():
                 uselist=False,
                 foreign_keys=POST_TABLE.c.deal_request_id,
                 backref=backref("buy", uselist=False),
-                lazy='select'
+                lazy='select',
+                cascade="save-update, merge, delete"
             )
         }
     )
@@ -72,15 +73,18 @@ def Map_User_Aggregation_Table():
                 Post,
                 uselist=False,
                 foreign_keys=REQUEST_TABLE.c.post_id,
-                backref=backref("requests", uselist=True),
-                lazy='select'
+                backref=backref("requests",
+                                uselist=True,
+                                cascade="save-update, merge, delete"),
+                lazy='select',
             ),
             'comments': relationship(
                 Comment,
                 secondary=REQUEST_OWN_COMMENT,
                 uselist=True,
                 backref=backref("owner", uselist=False),
-                lazy='select'
+                lazy='select',
+                cascade="save-update, merge, delete"
             )
         }
     )

@@ -8,9 +8,6 @@ from consumer_actor import ConsumerActor
 
 class ContributorActor(ConsumerActor):
 
-    def __init__(self, access_token):
-        ConsumerActor.__init__(self,access_token)
-
     def get_contributor(self):
         return UserRepository().get_contributor(self._user_id)
 

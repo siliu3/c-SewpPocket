@@ -11,21 +11,8 @@ USER_RESOURCE_FIELDS = {
     'email': fields.String,
     'phone': fields.String,
     'name': fields.String,
-    'eid': fields.String
-}
-
-CONSUMER_RESOURCE_FIELDS = USER_RESOURCE_FIELDS.copy()
-CONSUMER_RESOURCE_FIELDS.update({})
-
-CONSUMER_REQUEST_RESOURCE_FIELDS = {
-    'id': fields.Integer,
-    'status': fields.String
-}
-
-CONSUMER_REQUEST_COMMENT_RESOURCE_FIELDS = {
-    'id': fields.Integer,
-    'content': fields.String,
-    'nickname': fields.String
+    'eid': fields.String,
+    "is_regulator" : fields.Boolean
 }
 
 POST_RESOURCE_FIELDS ={
@@ -36,12 +23,32 @@ POST_RESOURCE_FIELDS ={
     'description': fields.String
 }
 
+COMMENT_RESOURCE_FIELDS = {
+    'id': fields.Integer,
+    'content': fields.String,
+    'nickname': fields.String
+}
+
+REQUEST_RESOURCE_FIELDS = {
+    'id': fields.Integer,
+    'status': fields.String
+}
+
+CONSUMER_REQUEST_RESOURCE_FIELDS = REQUEST_RESOURCE_FIELDS.copy()
+
+CONSUMER_REQUEST_COMMENT_RESOURCE_FIELDS = COMMENT_RESOURCE_FIELDS.copy()
+
+
+
 
 CONTRIBUTOR_POST_RESOURCE_FIELDS = POST_RESOURCE_FIELDS.copy()
+CONTRIBUTOR_POST_RESOURCE_FIELDS.update({
+    'requests': fields.Nested(CONSUMER_REQUEST_RESOURCE_FIELDS)
+})
 
-CONTRIBUTOR_POST_REQUEST_RESOURCE_FIELDS = CONSUMER_REQUEST_RESOURCE_FIELDS.copy()
+CONTRIBUTOR_POST_REQUEST_RESOURCE_FIELDS = REQUEST_RESOURCE_FIELDS.copy()
 
-CONTRIBUTOR_POST_REQUEST_COMMENT_RESOURCE_FIELDS = CONSUMER_REQUEST_COMMENT_RESOURCE_FIELDS.copy()
+CONTRIBUTOR_POST_REQUEST_COMMENT_RESOURCE_FIELDS = COMMENT_RESOURCE_FIELDS.copy()
 
 
 

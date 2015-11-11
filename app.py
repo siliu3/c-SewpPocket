@@ -1,4 +1,4 @@
-# lib
+# -*- coding: utf-8 -*-
 import unittest
 import socket
 import thread
@@ -6,7 +6,7 @@ import time
 from flask import Flask
 from flask_script import Manager
 from flask_restful import Api
-
+from flask import send_from_directory
 from libs.cutoms.singleton import Singleton
 from constants.enums import AppMode
 from layers.infrastructure_layer.configger import Configger
@@ -15,7 +15,8 @@ from layers.infrastructure_layer.db.orm_db import OrmDb
 from layers.ui_layer.rest.urls import URLS
 from layers.infrastructure_layer.error.error_mapping import ERROR_MAPPING
 from devhelper.command import Command_Regist
-
+from constants import dirs
+from libs.cutoms.converter import RegexConverter
 
 class App(object):
     __metaclass__ = Singleton
@@ -66,6 +67,19 @@ class App(object):
         restful = Api(self._flask)
         for key, value in URLS.items():
             restful.add_resource(value, key)
+
+
+        self._flask.url_map.converters['regex'] = RegexConverter
+        def web_redirect(path):
+            return send_from_directory(dirs.FRONT_END_WEB_DIR.decode('utf-8'),"index.html")
+
+        def web_file(filename):
+            #return dirs.FRONT_END_WEB_DIR.decode('utf-8')+filename
+            return send_from_directory(dirs.FRONT_END_WEB_DIR.decode('utf-8'),filename)
+
+        self._flask.add_url_rule(rule='/<regex("[a-zA-Z0-9_/]*"):path>',view_func=web_redirect)
+        self._flask.add_url_rule(rule='/<path:filename>',view_func=web_file)
+
 
     def _error_mapping(self):
         for error_map in ERROR_MAPPING:
