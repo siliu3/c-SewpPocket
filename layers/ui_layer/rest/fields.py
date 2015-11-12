@@ -22,7 +22,8 @@ POST_RESOURCE_FIELDS ={
     'name': fields.String,
     'category': fields.String,
     'price': fields.Integer,
-    'description': fields.String
+    'description': fields.String,
+    'is_sold': fields.Boolean
 }
 
 THE_POST_RESOURCE_FIELDS = POST_RESOURCE_FIELDS.copy()

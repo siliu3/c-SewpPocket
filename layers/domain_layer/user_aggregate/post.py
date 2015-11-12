@@ -16,6 +16,7 @@ class Post(object):
         self.requests = []
         self.deal_request = None
 
+    @property
     def is_sold(self):
         return self.deal_request != None
 

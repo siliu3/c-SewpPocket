@@ -15,6 +15,7 @@
                     <th>name</th>
                     <th>category</th>
                     <th>price</th>
+                    <th>is sold?</th>
                     <th>description</th>
                     <th>owner id</th>
                     <th>owner name</th>
@@ -29,11 +30,14 @@
                             <td><%= post.get('name')%></td>
                             <td><%= post.get('category')%></td>
                             <td><%= post.get('price')%></td>
+                            <td><%= post.get('is_sold')%></td>
                             <td><%= post.get('description')%></td>
                             <td><%= post.get('owner').id %></td>
                             <td><%= post.get('owner').name %></td>
                             <td>
+                                <% if(! post.get('is_sold')){ %>
                                 <button type="button" value="<%= post.get('id')%>" class="make-request btn btn-primary btn-xs">Make a request</button>
+                                <% } %>
                             </td>
                         </tr>
                 <% }); %>

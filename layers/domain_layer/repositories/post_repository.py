@@ -11,7 +11,7 @@ from layers.domain_layer.user_aggregate import Post
 class PostRepository(Repository):
 
     def all(self):
-        return self.session.query(Post).all()
+        return self.session.query(Post).order_by(Post.id.desc()).all()
 
     def get(self,post_id):
         return  self.session.query(Post).get(post_id)
