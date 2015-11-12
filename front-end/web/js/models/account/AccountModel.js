@@ -2,16 +2,16 @@ define([ 'underscore',
          'backbone', 
          ], function(_, Backbone) {
 
-	var OrderModel = Backbone.Model.extend({
+	var AccountModel = Backbone.Model.extend({
 		idAttribute: "id",
-		urlRoot:'/api/order',
+		urlRoot:'/api/account',
 		defaults : {
-			id			: null,
-			datetime   	: null,
+			username 		: null
 		}
 
 	});
 
-	return OrderModel;
+
+	return AccountModel;
 
 });

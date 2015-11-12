@@ -3,9 +3,11 @@ define([
   'underscore',
   'backbone',
   'views/base/MainView',
+  'collections/post/PostCollection',
   'text!templates/main/homeTemplate.html',
 
   ], function($, _, Backbone,MainView,
+    PostCollection,
     homeTemplate){
     
 
@@ -14,6 +16,12 @@ define([
       id: "home-view",
 
       initialize : function() {
+        
+        this.postCollection = new PostCollection([]);
+        this.postCollection.bind('reset', this.render, this);
+        this.postCollection.bind('add', this.render, this);
+        this.postCollection.fetch();
+        
         this.render();
         this.baseView = new MainView({pageView:this});
       },
@@ -29,10 +37,14 @@ define([
       render: function(){
         $(document).attr("title","Dashboard");
 
-        // $('.nav li').removeClass('active');
-        // $('.nav li a[href=""]').addClass('active');
-
-        this.$el.html(homeTemplate);		
+        var templateObject = _.template(homeTemplate);
+        this.$el.html(templateObject(
+          {
+            _: _,
+            errorMessage: this.errorMessage,
+            posts: this.postCollection.models
+          }
+          ));		
       }
     });
 

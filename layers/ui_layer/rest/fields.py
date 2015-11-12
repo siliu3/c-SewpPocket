@@ -12,6 +12,8 @@ USER_RESOURCE_FIELDS = {
     'phone': fields.String,
     'name': fields.String,
     'eid': fields.String,
+    "is_consumer" : fields.Boolean,
+    "is_contributor" : fields.Boolean,
     "is_regulator" : fields.Boolean
 }
 

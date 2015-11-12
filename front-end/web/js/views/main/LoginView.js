@@ -3,12 +3,10 @@ define([
   'underscore',
   'backbone',
   'models/token/TokenModel',
-  // 'models/user/UserModel',
   'text!templates/main/loginTemplate.html',
 
   ], function($, _, Backbone,
     TokenModel,
-    // UserModel,
     loginTemplate){
 
     var LoginView = Backbone.View.extend({
@@ -21,54 +19,13 @@ define([
       },
 
       events:{
-        // 'click .login-method button' : 'loginMethodClick',
         'click #btn-login-commit'    : 'login',
-        'submit #login-form'                : 'login'
-        // 'click #btn-new-user-commit' : 'regist',
+        'submit #login-form'                : 'login',
+        'click #btn-goto-regist' : 'goto_regist'
       },
-
-      // regist : function(e){
-      //   var that = this;
-      //   $('#btn-new-user-commit').attr("disabled",true);
-
-      //   var newUserModel = new UserModel({
-      //     uname     : $("#new-user-uname").val(),
-      //     mobile    : $("#new-user-username").val(),
-      //     corpname  : $("#new-user-corpname").val(),
-      //     addr      : $("#new-user-addr").val(),
-      //     district  : $("#new-user-district").val(),
-
-      //     cnttman   : $("#new-user-cnttman").val(),
-      //     cntttel   : $("#new-user-cntttel").val(),
-
-      //     email     : $("#new-user-email").val(),
-      //     scope     : new Number($("#new-user-scope").val()),
-
-      //     account   : {
-      //       acctname  : $("#new-user-username").val(),
-      //       pwd       : $("#new-user-password").val(),
-      //     },
-      //   });
-      //   newUserModel.save(newUserModel.toJSON(), {
-      //     url:'/api/admin/users',
-
-      //     success: function(model, response) {  
-      //       alert("注册成功");
-      //       $('#btn-new-user-commit').attr("disabled",false);
-      //       $("#modal-new-user").modal('hide');
-      //     },
-      //     error: function (model, response) {
-      //       errorInfo = JSON.parse(response.responseText);
-      //       switch (errorInfo['error_code']) {
-      //         case 'USERNAME_HAS_EXIST':
-      //         alert("用户名已存在");break;
-      //         default:
-      //         alert("服务器未知错误");break;
-      //       }
-      //       $('#btn-new-user-commit').attr("disabled",false);
-      //     }
-      //   });
-      // },
+      goto_regist: function(e){
+        Backbone.history.navigate('regist', {trigger:true});
+      },
 
       login : function(e){
         e.preventDefault();  
@@ -106,21 +63,26 @@ define([
           error: function(model, response) {
             var errorInfo = JSON.parse(response.responseText);
             console.log(errorInfo);
-            alert(errorInfo.message);
+            that.errorMessage = errorInfo.message;
+            that.render();
+            
+            $('#error-modal').modal('show');
             $('#btn-login-commit').attr("disabled",false);
           },
         });
 
       },
 
-      // loginMethodClick : function(e){
-      //   $(".login-method button").removeClass("active");
-      //   $(".login-method button").addClass("reverse-option");
-      //   $(e.currentTarget).addClass("active");
-      // },
+
       render: function(){
         $(document).attr("title","Login");
-        this.$el.html(loginTemplate);
+        var templateObject = _.template(loginTemplate);
+        this.$el.html(templateObject(
+          {
+            _: _,
+            errorMessage: this.errorMessage
+          }
+          ));
         
         // $('#new-user-form').formValidation();
       }

@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Regist New Account</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="regist-form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input id="regist-email" class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input id="regist-password" class="form-control" placeholder="Password" name="password" type="password" value="">
+                            </div>
+                            <div class="form-group">
+                                <input id="regist-nickname" class="form-control" placeholder="Nickname" name="nickname" type="text" value="">
+                            </div>
+                            <div class="form-group">
+                                <input id="regist-phone" class="form-control" placeholder="Phone" name="phone" type="text" value="">
+                            </div>
+                            <div class="form-group">
+                                <input id="regist-name" class="form-control" placeholder="Name" name="name" type="text" value="">
+                            </div>
+                            <div class="form-group">
+                                <input id="regist-eid" class="form-control" placeholder="EID" name="eid" type="text" value="">
+                            </div>
+                            <div class="form-group">
+                                <input id="regist-secret" class="form-control" placeholder="Secret" name="secret" type="text" value="">
+                            </div>
+                            <div class="form-group">
+                                <button id="btn-regist-commit" type="submit" class="btn btn-lg btn-success btn-block">Regist Commit</button>
+                            </div>
+                            <div class="form-group">
+                                <button id="btn-goto-login" type="button" class="btn btn-lg btn-info btn-block">Goto Login</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="success-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">Regust Success</h4>
+            </div>
+            <div class="modal-body">
+                   You have successed get a account, please login;
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="error-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">Error Happen!</h4>
+            </div>
+            <div class="modal-body">
+                   <%= errorMessage %>
+            </div>
+        </div>
+    </div>
+</div>

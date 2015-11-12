@@ -11,29 +11,49 @@
         <table class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>user id</th>
-                    <th>nickname</th>
-                    <th>email</th>
-                    <th>phone</th>
-                    <th>name</th>
-                    <th>eid</th>
-                    <th>is regulator ?</th>
+                    <th>Attributes</th>
+                    <th>Value</th>
+                    
                 </tr>
             </thead>
-
             <tbody>
-
-
-
-                        <tr>
-                            <td><%= user.get('id')%></td>
-                            <td><%= user.get('nickname')%></td>
-                            <td><%= user.get('email')%></td>
-                            <td><%= user.get('phone')%></td>
-                            <td><%= user.get('name')%></td>
-                            <td><%= user.get('eid')%></td>
-                            <td><%= user.get('is_regulator')%></td>
-                        </tr>
+                <tr>
+                    <td>user id</td>
+                    <td><%= user.get('id')%></td>
+                </tr>
+                <tr>
+                    <td>nickname</td>
+                    <td><%= user.get('nickname')%></td>
+                </tr>
+                <tr>
+                    <td>email</td>
+                    <td><%= user.get('email')%></td>
+                </tr>
+                <tr>
+                    <td>phone</td>
+                    <td><%= user.get('phone')%></td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td><%= user.get('name')%></td>
+                </tr>
+                <tr>
+                    <td>eid</td>
+                    <td><%= user.get('eid')%></td>
+                </tr>
+                <tr>
+                    <td>is consumer ?</td>
+                    <td><%= user.get('is_consumer')%></td>
+                </tr>
+                <tr>
+                    <td>is contributor ?</td>
+                    <td><%= user.get('is_contributor')%></td>
+                </tr>
+                <tr>
+                    <td>is regulater ?</td>
+                    <td><%= user.get('is_regulator')%></td>
+                </tr>
+                  
             </tbody>
 
         </table>

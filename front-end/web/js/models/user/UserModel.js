@@ -12,6 +12,8 @@ define([ 'underscore',
 			name 		: null,
 			eid 	: null,
 
+			is_consumer 	: null,
+			is_contributor 	: null,
 			is_regulator 	: null
 		},
 		

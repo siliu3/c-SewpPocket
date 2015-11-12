@@ -10,6 +10,7 @@ define([ 'jquery', 'backbone',
 		//  'views/main/DictionaryView',
 		//  'views/main/SubleagueView',
 		 'views/main/LoginView',
+		 'views/main/RegistView',
          'views/main/NofoundView'
          
          ], function($, Backbone, 
@@ -18,6 +19,7 @@ define([ 'jquery', 'backbone',
 				//  DeviceView,DeviceDetailView,DevicePriceView,
         		//  DictionaryView,SubleagueView,
 				LoginView,
+				RegistView,
 				NofoundView
 		) {
 	
@@ -33,6 +35,7 @@ define([ 'jquery', 'backbone',
 			'dictionary'				: 'dictionaryPage',
 			'test'						: 'testPage',
 			'login'						: 'loginPage',
+			'regist'					: 'registPage',
 
 			'userinfo'					: 'userInfoPage',
 
@@ -69,6 +72,9 @@ define([ 'jquery', 'backbone',
 
 		loginPage : function() {
 			this.loadView(new LoginView());
+		},
+		registPage : function() {
+			this.loadView(new RegistView());
 		},
 
 
