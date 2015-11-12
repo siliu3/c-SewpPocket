@@ -53,7 +53,7 @@ define([
             $('#btn-login-commit').attr("disabled",false);
             $.cookie("login", JSON.stringify({
               token: that.tokenModel.toJSON()
-            })
+            }),{ path: '/' }
             );
 
             Backbone.history.navigate('', {trigger:true});

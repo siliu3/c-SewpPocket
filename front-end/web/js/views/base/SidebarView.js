@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone',
                 this.user = new UserModel();
                 this.user.fetch({async:false});
                 this.is_regulator = this.user.get('is_regulator');
-                console.log( this.is_regulator );
+                
                 this.render();
             },
             events: {

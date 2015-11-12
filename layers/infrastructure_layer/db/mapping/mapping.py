@@ -55,29 +55,22 @@ def Map_User_Aggregation_Table():
     mapper(
         Post,POST_TABLE,
         properties={
-            'deal_request': relationship(
+            'requests': relationship(
                 Request,
-                uselist=False,
-                foreign_keys=POST_TABLE.c.deal_request_id,
-                backref=backref("buy", uselist=False),
+                uselist=True,
+                foreign_keys=REQUEST_TABLE.c.post_id,
+                backref=backref("post",uselist=False),
                 lazy='select',
-                cascade="save-update, merge, delete"
-            )
+                cascade="delete",
+                cascade_backrefs=False
+            ),
         }
     )
 
     mapper(
         Request,REQUEST_TABLE,
         properties={
-            'post': relationship(
-                Post,
-                uselist=False,
-                foreign_keys=REQUEST_TABLE.c.post_id,
-                backref=backref("requests",
-                                uselist=True,
-                                cascade="save-update, merge, delete"),
-                lazy='select',
-            ),
+
             'comments': relationship(
                 Comment,
                 secondary=REQUEST_OWN_COMMENT,
@@ -85,6 +78,14 @@ def Map_User_Aggregation_Table():
                 backref=backref("owner", uselist=False),
                 lazy='select',
                 cascade="save-update, merge, delete"
+            ),
+            'buy': relationship(
+                Post,
+                uselist=False,
+                foreign_keys=POST_TABLE.c.deal_request_id,
+                backref=backref("deal_request", uselist=False),
+                lazy='select',
+                cascade_backrefs=False
             )
         }
     )

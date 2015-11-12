@@ -20,6 +20,7 @@ class Post(object):
         return self.deal_request != None
 
     def get_request(self,request_id):
+        print(self.requests)
         for request in self.requests:
             if request.id == request_id:
                 return request

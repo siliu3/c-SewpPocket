@@ -11,6 +11,9 @@ define([ 'jquery', 'backbone',
 		//  'views/main/SubleagueView',
 		 'views/main/LoginView',
 		 'views/main/RegistView',
+		 'views/main/RequestView',
+		 'views/main/PostView',
+		 
          'views/main/NofoundView'
          
          ], function($, Backbone, 
@@ -20,6 +23,9 @@ define([ 'jquery', 'backbone',
         		//  DictionaryView,SubleagueView,
 				LoginView,
 				RegistView,
+				RequestView,
+				PostView,
+				
 				NofoundView
 		) {
 	
@@ -29,15 +35,13 @@ define([ 'jquery', 'backbone',
 		routes : {
 			// Define some URL routes
 			''							: 'homePage',
-			'device'					: 'devicePage',
-			'device/:deviceID'			: 'deviceDetailPage',
-			'deviceprice'				: 'devicePricePage',
-			'dictionary'				: 'dictionaryPage',
-			'test'						: 'testPage',
+			'/'							: 'homePage',
 			'login'						: 'loginPage',
 			'regist'					: 'registPage',
 
 			'userinfo'					: 'userInfoPage',
+			'consumer/requests'			: 'requestPage',
+			'contributor/posts'			: 'postPage',
 
 			// Default
 			'*action' 					: 'nofoundPage'
@@ -76,11 +80,14 @@ define([ 'jquery', 'backbone',
 		registPage : function() {
 			this.loadView(new RegistView());
 		},
+			
+		requestPage : function(){
+			this.loadView(new RequestView());
+		},
+		postPage : function(){
+			this.loadView(new PostView());
+		},
 
-
-		// subleaguePage : function() {
-		// 	this.loadView(new SubleagueView());
-		// },
 		
 		nofoundPage : function(){
 			this.loadView(new NofoundView());
@@ -102,6 +109,8 @@ define([ 'jquery', 'backbone',
 			},
 		}
 	});
+	
+	$.cookie.defaults = { path: '/', expires: 365 };
 
 	return AppRouter;
 });

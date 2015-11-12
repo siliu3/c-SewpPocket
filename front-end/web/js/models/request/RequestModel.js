@@ -2,16 +2,12 @@ define([ 'underscore',
          'backbone', 
          ], function(_, Backbone) {
 
-	var PostModel = Backbone.Model.extend({
+	var RequestModel = Backbone.Model.extend({
 		idAttribute: "id",
-		urlRoot:'/api/contributor/post',
+		urlRoot:'/api/consumer/requests',
 		defaults : {
-			id			: null,
-			name   	: null,
-			category   	: null,
-			price   	: null,
-			description   	: null,
-		},
+            status       : null
+        },
 		gettoken:function(){
 			var json_token=JSON.parse($.cookie('login'));
 			var access_token=json_token.token.access_token;
@@ -26,7 +22,5 @@ define([ 'underscore',
 			return Backbone.Model.prototype.save.call(this,attributes,options);
 		}
 	});
-
-	return PostModel;
-
+	return RequestModel;
 });

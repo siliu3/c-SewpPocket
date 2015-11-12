@@ -16,6 +16,8 @@
                     <th>category</th>
                     <th>price</th>
                     <th>description</th>
+                    <th>owner id</th>
+                    <th>owner name</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -28,8 +30,10 @@
                             <td><%= post.get('category')%></td>
                             <td><%= post.get('price')%></td>
                             <td><%= post.get('description')%></td>
+                            <td><%= post.get('owner').id %></td>
+                            <td><%= post.get('owner').name %></td>
                             <td>
-                                <button type="button" value="<%= post.get('id')%>" class="btn btn-primary btn-xs">Make a request</button>
+                                <button type="button" value="<%= post.get('id')%>" class="make-request btn btn-primary btn-xs">Make a request</button>
                             </td>
                         </tr>
                 <% }); %>
@@ -42,4 +46,35 @@
 
 
 
+</div>
+
+
+
+
+<div id="success-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">Request Success</h4>
+            </div>
+            <div class="modal-body">
+                   You have successed Make a Request~
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="error-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">Error Happen!</h4>
+            </div>
+            <div class="modal-body">
+                   <%= errorMessage %>
+            </div>
+        </div>
+    </div>
 </div>

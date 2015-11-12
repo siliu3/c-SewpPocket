@@ -18,7 +18,7 @@ class PostsResource(Resource):
         self._consumer_actor = None
         self._contributor_actor = None
 
-    @marshal_with(fields.POST_RESOURCE_FIELDS)
+    @marshal_with(fields.THE_POST_RESOURCE_FIELDS)
     def get(self):
         request_parser = ex_reqparse.ExRequestParser()
         request_parser.add_argument(arguments.ACCESS_TOKEN_HEADER)

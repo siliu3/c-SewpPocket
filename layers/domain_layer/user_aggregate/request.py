@@ -20,7 +20,7 @@ class Request(object):
 
     def set_agree(self):
         self.status = Request.AGREE
-        self.post.deal_request = self
+        self.post.deal_request_id = self.id
         for request in self.post.requests:
             if request.id != self.id:
                 request.set_refuse()
