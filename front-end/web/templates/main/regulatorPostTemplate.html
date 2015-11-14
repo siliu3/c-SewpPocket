@@ -37,9 +37,8 @@
                             <td><%= post.get('owner').id %></td>
                             <td><%= post.get('owner').name %></td>
                             <td>
-                                <% if(! post.get('is_sold')){ %>
-                                <button type="button" value="<%= post.get('id')%>" class="make-request btn btn-primary btn-xs">Make a request</button>
-                                <% } %>
+
+                                <button type="button" value="<%= post.get('id')%>" class="delete-post btn btn-danger btn-xs">delete</button>
                             </td>
                         </tr>
                 <% }); %>

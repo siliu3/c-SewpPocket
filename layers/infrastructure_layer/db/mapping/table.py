@@ -2,6 +2,7 @@ from sqlalchemy import Table, Column, ForeignKey, Integer, String, REAL, Float
 from sqlalchemy import DateTime, Float, PickleType, Numeric
 from sqlalchemy import Boolean, Text
 from sqlalchemy import MetaData
+from sqlalchemy import ForeignKeyConstraint
 
 META_DATA = MetaData()
 ###############################################################################
@@ -64,6 +65,7 @@ POST_TABLE = Table(
     Column('category', String(20)),
     Column('price', Integer),
     Column('description', String(100)),
+    Column('time', DateTime),
     Column('deal_request_id', None, ForeignKey('TB_Request.id'))
 )
 
@@ -72,7 +74,12 @@ REQUEST_TABLE = Table(
     'TB_Request', META_DATA,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('status', String(20)),
-    Column('post_id', None, ForeignKey('TB_Post.id'))
+    Column('post_id', None, ForeignKey('TB_Post.id')),
+    ForeignKeyConstraint(
+                ['post_id'],
+                ['TB_Post.id'],
+                ondelete="SET NULL"
+    )
 )
 
 REQUEST_OWN_COMMENT = Table(
@@ -86,6 +93,7 @@ COMMENT_TABLE = Table(
     'TB_Comment', META_DATA,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('content', String(100)),
+    Column('time', DateTime),
     Column('nickname', String(20))
 )
 

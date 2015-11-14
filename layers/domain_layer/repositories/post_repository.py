@@ -25,3 +25,4 @@ class PostRepository(Repository):
 
     def delete(self,post):
         self.session.delete(post)
+        self.session.flush()

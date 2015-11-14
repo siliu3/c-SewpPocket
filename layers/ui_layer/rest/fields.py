@@ -23,6 +23,7 @@ POST_RESOURCE_FIELDS ={
     'category': fields.String,
     'price': fields.Integer,
     'description': fields.String,
+    'time' : fields.DateTime,
     'is_sold': fields.Boolean
 }
 
@@ -34,6 +35,7 @@ THE_POST_RESOURCE_FIELDS.update({
 COMMENT_RESOURCE_FIELDS = {
     'id': fields.Integer,
     'content': fields.String,
+    'time' : fields.DateTime,
     'nickname': fields.String
 }
 

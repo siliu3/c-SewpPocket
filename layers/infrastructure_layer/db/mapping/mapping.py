@@ -61,7 +61,7 @@ def Map_User_Aggregation_Table():
                 foreign_keys=REQUEST_TABLE.c.post_id,
                 backref=backref("post",uselist=False),
                 lazy='select',
-                cascade="delete",
+                cascade="delete, delete-orphan",
                 cascade_backrefs=False
             ),
         }
@@ -83,7 +83,7 @@ def Map_User_Aggregation_Table():
                 Post,
                 uselist=False,
                 foreign_keys=POST_TABLE.c.deal_request_id,
-                backref=backref("deal_request", uselist=False),
+                backref=backref("deal_request", uselist=False,cascade="save-update"),
                 lazy='select',
                 cascade_backrefs=False
             )

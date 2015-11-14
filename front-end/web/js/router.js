@@ -1,30 +1,29 @@
 // Filename: router.js
 define([ 'jquery', 'backbone',
-        //  'views/base/MainView',
-
          'views/main/HomeView',
 		 'views/main/UserInfoView',
-        //  'views/main/DeviceView',
-        //  'views/main/DeviceDetailView',
-        //  'views/main/DevicePriceView',
-		//  'views/main/DictionaryView',
-		//  'views/main/SubleagueView',
 		 'views/main/LoginView',
 		 'views/main/RegistView',
 		 'views/main/RequestView',
 		 'views/main/PostView',
+		 'views/main/ConsumerCommentView',
+		 'views/main/ContributorCommentView',
+		 'views/main/RegulatorPostView',
+		 'views/main/RegulatorCommentView',
 		 
          'views/main/NofoundView'
          
          ], function($, Backbone, 
         		HomeView,
 				UserInfoView,
-				//  DeviceView,DeviceDetailView,DevicePriceView,
-        		//  DictionaryView,SubleagueView,
 				LoginView,
 				RegistView,
 				RequestView,
 				PostView,
+				ConsumerCommentView,
+				ContributorCommentView,
+				RegulatorPostView,
+				RegulatorCommentView,
 				
 				NofoundView
 		) {
@@ -42,6 +41,12 @@ define([ 'jquery', 'backbone',
 			'userinfo'					: 'userInfoPage',
 			'consumer/requests'			: 'requestPage',
 			'contributor/posts'			: 'postPage',
+			
+			'consumer/request/:request_id/comments'			: 'consumerCommentPage',
+			'contributor/post/:post_id/deal_request/comments'			: 'contributorCommentPage',
+			
+			'regulator/comments'			: 'regularCommentPage',
+			'regulator/posts'			: 'regularPostPage',
 
 			// Default
 			'*action' 					: 'nofoundPage'
@@ -59,20 +64,7 @@ define([ 'jquery', 'backbone',
 		// 		deviceID : deviceID
 		// 	}));
 		// },
-		
-		// devicePricePage : function() {
-		// 	this.loadView(new DevicePriceView());
-		// },
-		
-		// dictionaryPage : function() {
-		// 	this.loadView(new DictionaryView());
-		// },
-		
-		
 
-		// testPage :function() {
-		// 	this.loadView(new TestDeviceView());
-		// },
 
 		loginPage : function() {
 			this.loadView(new LoginView());
@@ -86,6 +78,21 @@ define([ 'jquery', 'backbone',
 		},
 		postPage : function(){
 			this.loadView(new PostView());
+		},
+		
+		consumerCommentPage : function(request_id){
+			this.loadView(new ConsumerCommentView({request_id:request_id}));
+		},
+		
+		contributorCommentPage : function(post_id){
+			this.loadView(new ContributorCommentView({post_id:post_id}));
+		},
+		
+		regularCommentPage : function(){
+			this.loadView(new RegulatorCommentView());
+		},
+		regularPostPage : function(){
+			this.loadView(new RegulatorPostView());
 		},
 
 		

@@ -5,6 +5,8 @@ post.py
  
 Created by BigYuki on 15/11/10.
 """
+from datetime import datetime
+
 class Post(object):
     def __init__(self,name,category,price,description):
         self.id = None
@@ -12,6 +14,7 @@ class Post(object):
         self.category = category
         self.price = price
         self.description = description
+        self.time = datetime.now()
 
         self.requests = []
         self.deal_request = None

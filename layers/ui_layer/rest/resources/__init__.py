@@ -13,3 +13,4 @@ from consumer_request_commments_resource import ConsumerRequestCommentsResource
 from posts_resource import PostsResource
 from post_resource import PostResource
 from comment_resource import CommentResource
+from comments_resource import CommentsResource

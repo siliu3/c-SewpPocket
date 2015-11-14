@@ -2,7 +2,7 @@ define([ 'underscore',
          'backbone', 
          ], function(_, Backbone) {
 
-	var PostModel = Backbone.Model.extend({
+	var CommentModel = Backbone.Model.extend({
 		idAttribute: "id",
 		urlRoot:'/api/contributor/post',
 		defaults : {
@@ -33,6 +33,6 @@ define([ 'underscore',
 		}
 	});
 
-	return PostModel;
+	return CommentModel;
 
 });

@@ -16,6 +16,7 @@ URLS = {
     '/api/consumer/request/<int:request_id>/comments': ConsumerRequestCommentsResource, #对成功的请求评价，获取所有评价
 
     '/api/posts': PostsResource,
+    '/api/comments' : CommentsResource, #删除某条评论
     '/api/post/<int:post_id>' :PostResource, #删除物品（以及该物品的所有请求和评论）
     '/api/comment/<int:comment_id>' : CommentResource, #删除某条评论
 }

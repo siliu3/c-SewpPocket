@@ -30,9 +30,16 @@ define([
       },
 
       events: {
-        'click .make-request': 'make_request'
+        'click .make-request': 'make_request',
+        'click .request-comment': 'go_to_comment'
 
       },
+      
+      go_to_comment: function(e) {
+        var request_id = $(e.target).val();
+        Backbone.history.navigate("consumer/request/"+request_id+"/comments", { trigger: true });
+      },
+      
       make_request: function (e) {
         var that = this;
         var post_id = $(e.target).val();

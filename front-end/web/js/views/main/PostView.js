@@ -36,8 +36,15 @@ define([
           'click .request-agree' : 'request_agree',
           'click .request-refuse' : 'request_refuse',
           'submit #post-form'         : 'new_post',
-          'click #btn-post-commit' : 'new_post'
+          'click #btn-post-commit' : 'new_post',
+          'click .request-comment' : 'go_to_comment'
       },
+      
+      go_to_comment: function(e) {
+        var post_id = $(e.target).val();
+        Backbone.history.navigate("contributor/post/"+post_id+"/deal_request/comments", { trigger: true });
+      },
+      
       new_post : function(e){
         e.preventDefault();
         var that = this;
