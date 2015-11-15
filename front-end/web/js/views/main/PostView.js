@@ -77,7 +77,7 @@ define([
         }
         //显示异常！！！
         if(that.errorMessage!=""){
-          //that.render();
+          that.render();
           $('#error-modal').modal('show');
           $('#new-post-modal').modal('show');
           $('#btn-post-commit').attr("disabled",false);
