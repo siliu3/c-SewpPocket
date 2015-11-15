@@ -26,3 +26,4 @@
 			python dev.py runserver
 
 	- open browser goto http://127.0.0.1:5000
+test
