@@ -39,7 +39,8 @@ class ContributorPostsResource(Resource):
         access_token = re.sub('^Bearer ', '', request_args['Authorization'])
         self._contributor_actor = ContributorActor(access_token)
 
-        post_parser = ex_reqparse.ExRequestParser()
+        post_parser =  reqparse.RequestParser()
+
         post_parser.add_argument('name', required=True)
         post_parser.add_argument('category', required=True)
         post_parser.add_argument('price', type=int,required=True)

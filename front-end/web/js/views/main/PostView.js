@@ -58,6 +58,33 @@ define([
 
         });
         newPostModel.urlRoot = '/api/contributor/posts';
+        
+        var reg_num = /^[0-9]*$/;
+        var exist_empty_val=false;
+        var json_form_data = newPostModel.toJSON()
+        that.errorMessage = "";
+        $.each(json_form_data,function(key,val){if(val==""){exist_empty_val=true;return;}});
+        if(exist_empty_val){
+          //check empty
+          var empty_val="";
+          $.each(json_form_data,function(key,val){if(val==""){empty_val+=key+" ";}});
+          that.errorMessage = "Please input "+empty_val;
+        }else if(!reg_num.test(json_form_data.price)){
+          that.errorMessage = "Please input integer price, can be 0";
+        }else if(-1==$.inArray(json_form_data.category,["chager","hair_drier","drill","vacuum_cleaner","iron","juicer","camera","usbdisk","cardreader","cable"])){
+          //in case of wrong category
+          that.errorMessage = "Please select given category";
+        }
+        //显示异常！！！
+        if(that.errorMessage!=""){
+          //that.render();
+          $('#error-modal').modal('show');
+          $('#new-post-modal').modal('show');
+          $('#btn-post-commit').attr("disabled",false);
+          //$('.btn-primary').click();
+          return;
+        }
+        
         newPostModel.save(newPostModel.toJSON(), {
           success: function(model, response) {  
             
