@@ -19,7 +19,7 @@ class RegulatorActor(ContributorActor):
         if not user.is_regulator:
             raise NotARegulatorError("You are not a regulator!")
 
-
+    @Transaction_
     def delete_post(self,post_id):
         post = PostRepository().get(post_id)
         PostRepository().delete(post)

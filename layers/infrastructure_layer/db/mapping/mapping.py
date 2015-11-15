@@ -61,7 +61,7 @@ def Map_User_Aggregation_Table():
                 foreign_keys=REQUEST_TABLE.c.post_id,
                 backref=backref("post",uselist=False),
                 lazy='select',
-                cascade="delete, delete-orphan",
+                cascade="delete-orphan",
                 cascade_backrefs=False
             ),
         }
