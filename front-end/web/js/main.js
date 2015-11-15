@@ -2,7 +2,7 @@
 
 require.config({
   //  baseUrl: "/js/",
-  urlArgs: "version=0.0.7",
+  urlArgs: "version=0.0.8",
   paths: {
     text                  : 'libs/text/text',
     jquery                : 'libs/jquery/dist/jquery.min',  
