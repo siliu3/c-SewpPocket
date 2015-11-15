@@ -1,6 +1,10 @@
 from flask_restful import fields
 
 
+class DateTimeCus(fields.Raw):
+    def format(self, value):
+        return value.strftime('%Y-%m-%d %H:%M:%S')
+
 ACCOUNT_RESOURCE_FIELDS = {
     'username': fields.String
 }
@@ -17,25 +21,33 @@ USER_RESOURCE_FIELDS = {
     "is_regulator" : fields.Boolean
 }
 
+USER_SIM_RESOURCE_FIELDS = {
+    'nickname': fields.String,
+    'email': fields.String,
+    'phone': fields.String,
+    'name': fields.String
+}
+
+
+
 POST_RESOURCE_FIELDS ={
     'id': fields.Integer,
     'name': fields.String,
     'category': fields.String,
     'price': fields.Integer,
     'description': fields.String,
-    'time' : fields.DateTime,
-    'is_sold': fields.Boolean
+    'time' : DateTimeCus,
+    'is_sold': fields.Boolean,
+    "owner": fields.Nested(USER_SIM_RESOURCE_FIELDS)
 }
 
 THE_POST_RESOURCE_FIELDS = POST_RESOURCE_FIELDS.copy()
-THE_POST_RESOURCE_FIELDS.update({
-    "owner": fields.Nested(USER_RESOURCE_FIELDS)
-})
+
 
 COMMENT_RESOURCE_FIELDS = {
     'id': fields.Integer,
     'content': fields.String,
-    'time' : fields.DateTime,
+    'time' : DateTimeCus,
     'nickname': fields.String
 }
 
@@ -45,6 +57,7 @@ REQUEST_RESOURCE_FIELDS = {
 }
 
 CONSUMER_REQUEST_RESOURCE_FIELDS = REQUEST_RESOURCE_FIELDS.copy()
+
 CONSUMER_REQUEST_RESOURCE_FIELDS.update({
     'post' : fields.Nested(POST_RESOURCE_FIELDS)
 })
@@ -55,7 +68,7 @@ CONSUMER_REQUEST_COMMENT_RESOURCE_FIELDS = COMMENT_RESOURCE_FIELDS.copy()
 
 CONTRIBUTOR_POST_REQUEST_RESOURCE_FIELDS = REQUEST_RESOURCE_FIELDS.copy()
 CONTRIBUTOR_POST_REQUEST_RESOURCE_FIELDS.update({
-    'make_by' : fields.Nested(USER_RESOURCE_FIELDS)
+    'make_by' : fields.Nested(USER_SIM_RESOURCE_FIELDS)
 })
 
 CONTRIBUTOR_POST_RESOURCE_FIELDS = POST_RESOURCE_FIELDS.copy()

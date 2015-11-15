@@ -16,6 +16,8 @@
                     <th>post id</th>
                     <th>post name</th>
                     <th>post price</th>
+                    <th>provider email</th>
+                    <th>provider phone</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -45,6 +47,12 @@
                         </td>
                         <td>
                             <%= request.get('post').price %>
+                        </td>
+                        <td>
+                            <%= request.get('post').owner.email %>
+                        </td>
+                        <td>
+                            <%= request.get('post').owner.phone %>
                         </td>
                         <td>
                             <% if(request.get('status')=="agree"){ %>
