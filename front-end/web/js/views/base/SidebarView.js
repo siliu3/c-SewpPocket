@@ -17,12 +17,14 @@ define(['jquery', 'underscore', 'backbone',
             },
             events: {
                 'click li a[data-toggle="page"]': "navigate",
-                'click li[class="post_category"]': "select_category",
+                'click .post_category': "select_category",
             },
             
-            select_category: function () {
+            select_category: function (e) {
+                
+                console.log($(e.currentTarget).attr('value'));
                 $(".post_category_name").parent().hide();
-			    $(".post_category_name:contains("+this.getAttribute('value')+")").parent().show();
+			    $(".post_category_name:contains("+$(e.currentTarget).attr('value')+")").parent().show();
             },
             
             navigate: function (e) {

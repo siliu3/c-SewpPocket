@@ -11,7 +11,10 @@ define([ 'underscore',
 			category   	: null,
 			price   	: null,
 			description   	: null,
+			requsts:[]
 		},
+		
+		
 		gettoken:function(){
 			var json_token=JSON.parse($.cookie('login'));
 			var access_token=json_token.token.access_token;
