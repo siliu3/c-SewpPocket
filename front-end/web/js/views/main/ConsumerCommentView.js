@@ -56,6 +56,22 @@ define([
           content      : $("#comment-content").val(),
         });
         
+        if(""==$("#comment-content").val()){
+          that.errorMessage = "Please input comment";
+          //that.render();
+          //$('#error-modal').modal('show');
+          $("#error-modal .modal-body").html(that.errorMessage);
+          $("#error-modal").addClass("in");
+          $("#error-modal").css("display","block");
+          $("#error-modal button[aria-label=Close]").on("click",function(){
+            $("#error-modal").removeClass("in");
+            $("#error-modal").css("display","none");
+            $("#error-modal button[aria-label=Close]").unbind();
+          });
+          $('#btn-comment-commit').attr("disabled",false);
+          return;
+        }
+        
         newCommentModel.urlRoot = "/api/consumer/request/"+this.request_id+"/comments";
         newCommentModel.save(newCommentModel.toJSON(), {
           success: function(model, response) {  
