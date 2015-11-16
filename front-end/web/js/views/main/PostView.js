@@ -71,7 +71,7 @@ define([
           that.errorMessage = "Please input "+empty_val;
         }else if(!reg_num.test(json_form_data.price)){
           that.errorMessage = "Please input integer price, can be 0";
-        }else if(-1==$.inArray(json_form_data.category,["chager","hair_drier","drill","vacuum_cleaner","iron","juicer","camera","usbdisk","cardreader","cable"])){
+        }else if(-1==$.inArray(json_form_data.category,["charger","hair_drier","drill","vacuum_cleaner","iron","juicer","camera","usbdisk","cardreader","cable"])){
           //in case of wrong category
           that.errorMessage = "Please select given category";
         }

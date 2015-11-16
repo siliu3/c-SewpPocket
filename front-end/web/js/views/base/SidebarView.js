@@ -17,8 +17,14 @@ define(['jquery', 'underscore', 'backbone',
             },
             events: {
                 'click li a[data-toggle="page"]': "navigate",
+                'click li[class="post_category"]': "select_category",
             },
-
+            
+            select_category: function () {
+                $(".post_category_name").parent().hide();
+			    $(".post_category_name:contains("+this.getAttribute('value')+")").parent().show();
+            },
+            
             navigate: function (e) {
                 e.preventDefault();
                 Backbone.history.navigate(e.currentTarget.getAttribute('href'), { trigger: true });
