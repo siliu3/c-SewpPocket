@@ -77,11 +77,15 @@ define([
         }
         //显示异常！！！
         if(that.errorMessage!=""){
-          that.render();
-          $('#error-modal').modal('show');
-          $('#new-post-modal').modal('show');
+          $("#error-modal .modal-body").html(that.errorMessage);
+          $("#error-modal").addClass("in");
+          $("#error-modal").css("display","block");
+          $("#error-modal button[aria-label=Close]").on("click",function(){
+            $("#error-modal").removeClass("in");
+            $("#error-modal").css("display","none");
+            $("#error-modal button[aria-label=Close]").unbind();
+          });
           $('#btn-post-commit').attr("disabled",false);
-          //$('.btn-primary').click();
           return;
         }
         

@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">My Requests</h1>
+        <button id="toggle_btn" style="margin-bottom: 10px;" onclick='$(".label:not(.label-warning)").parent().parent().toggle();$("#toggle_btn").html($("#toggle_btn").html()=="Waiting requests"?"All requests":"Waiting requests");'>Waiting requests</button>
     </div>
     <!-- /.col-lg-12 -->
 </div>
