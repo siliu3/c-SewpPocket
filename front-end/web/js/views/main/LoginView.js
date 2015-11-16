@@ -35,7 +35,22 @@ define([
         var email = $('#login-email').val();
         var password = $('#login-pwd').val();
         var base64Str = email +':'+ password;
-
+        
+        var reg_email = /\w+[@]{1}\w+[.]\w+/;
+        that.errorMessage = "";
+        if(email==""){
+            that.errorMessage = "Please input username!";
+        }else if(!reg_email.test(email)){
+            that.errorMessage = "Please input correct username(An Email address)!";
+        }else if(password==""){
+            that.errorMessage = "Please input password!";
+        }
+        if(that.errorMessage!=""){
+            that.render();
+            $('#error-modal').modal('show');
+            $('#btn-login-commit').attr("disabled",false);
+            return;
+        }
 
         this.tokenModel = new TokenModel();
 
