@@ -4,7 +4,7 @@
         <div class="input-group custom-search-form">
             <input type="text" id="search" class="form-control" placeholder="Search by name" style="width: 276px;">
             <span class="input-group-btn" style="float: left;">
-                <button class="btn btn-default" type="button">
+                <button class="btn btn-default" type="button" onclick='$(".post_name").parent().hide();$(".post_name:contains("+document.getElementById("search").value+")").parent().show();'>
                     <i class="fa fa-search"></i>
                 </button>
             </span>
