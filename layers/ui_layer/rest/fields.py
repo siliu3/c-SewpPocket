@@ -1,8 +1,10 @@
 from flask_restful import fields
-
+import pytz
 
 class DateTimeCus(fields.Raw):
     def format(self, value):
+        eastern = pytz.timezone('Asia/Shanghai')
+        eastern.localize(value)
         return value.strftime('%Y-%m-%d %H:%M:%S')
 
 ACCOUNT_RESOURCE_FIELDS = {
