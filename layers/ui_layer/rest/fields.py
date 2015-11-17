@@ -5,8 +5,8 @@ from dateutil import tz
 class DateTimeCus(fields.Raw):
     def format(self, value):
 
-        from_zone = tz.gettz('UTC')
-        value = value.replace(tzinfo=from_zone)
+        # from_zone = tz.gettz('UTC')
+        # value = value.replace(tzinfo=from_zone)
 
         eastern = pytz.timezone('Asia/Shanghai')
         eastern.localize(value)
