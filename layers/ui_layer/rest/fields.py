@@ -4,13 +4,10 @@ from dateutil import tz
 
 class DateTimeCus(fields.Raw):
     def format(self, value):
-
-        # from_zone = tz.gettz('UTC')
-        # value = value.replace(tzinfo=from_zone)
-
+        my_datetime = value.replace(tzinfo=pytz.utc)
         eastern = pytz.timezone('Asia/Shanghai')
-        eastern.localize(value)
-        return value.strftime('%Y-%m-%d %H:%M:%S')
+        local_time = my_datetime.astimezone(eastern)
+        return local_time.strftime('%Y-%m-%d %H:%M:%S')
 
 ACCOUNT_RESOURCE_FIELDS = {
     'username': fields.String
