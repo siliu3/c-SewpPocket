@@ -17,14 +17,20 @@ class Post(object):
         self.time = datetime.now()
 
         self.requests = []
-        self.deal_request = None
+        self.deal_request_id = None
 
     @property
     def is_sold(self):
-        return self.deal_request != None
+        return self.deal_request_id != None
+
+    @property
+    def deal_request(self):
+        for request in self.requests:
+            if request.id == self.deal_request_id:
+                return request
 
     def get_request(self,request_id):
-        print(self.requests)
+
         for request in self.requests:
             if request.id == request_id:
                 return request

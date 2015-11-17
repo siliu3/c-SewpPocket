@@ -10,8 +10,7 @@ define([ 'underscore',
 			name   	: null,
 			category   	: null,
 			price   	: null,
-			description   	: null,
-			requsts:[]
+			description   	: null
 		},
 		
 		

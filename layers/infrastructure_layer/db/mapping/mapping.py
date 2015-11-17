@@ -60,9 +60,17 @@ def Map_User_Aggregation_Table():
                 uselist=True,
                 foreign_keys=REQUEST_TABLE.c.post_id,
                 lazy='select',
-                cascade="delete",
+                cascade="delete,delete-orphan",
                 cascade_backrefs=False
             ),
+            # 'deal_request': relationship(
+            #     Request,
+            #     uselist=False,
+            #     foreign_keys=POST_TABLE.c.deal_request_id,
+            #     cascade="",
+            #     cascade_backrefs=False,
+            #     lazy='select'
+            # )
         }
     )
 
@@ -78,19 +86,20 @@ def Map_User_Aggregation_Table():
                 lazy='select',
                 cascade="save-update, merge, delete"
             ),
-            'buy': relationship(
-                Post,
-                uselist=False,
-                foreign_keys=POST_TABLE.c.deal_request_id,
-                backref=backref("deal_request", uselist=False,cascade="save-update"),
-                lazy='select',
-                cascade_backrefs=False
-            ),
+            # 'buy': relationship(
+            #     Post,
+            #     uselist=False,
+            #     foreign_keys=POST_TABLE.c.deal_request_id,
+            #     cascade="save-update",
+            #     lazy='select'
+            # ),
             'post': relationship(
                         Post,
                         uselist=False,
                         foreign_keys=REQUEST_TABLE.c.post_id,
-                        lazy='select'
+                        lazy='select',
+                        cascade_backrefs=False
+
             )
 
 
