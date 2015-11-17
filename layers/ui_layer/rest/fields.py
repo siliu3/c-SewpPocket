@@ -1,8 +1,13 @@
 from flask_restful import fields
 import pytz
+from dateutil import tz
 
 class DateTimeCus(fields.Raw):
     def format(self, value):
+
+        from_zone = tz.gettz('UTC')
+        value = value.replace(tzinfo=from_zone)
+
         eastern = pytz.timezone('Asia/Shanghai')
         eastern.localize(value)
         return value.strftime('%Y-%m-%d %H:%M:%S')
