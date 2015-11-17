@@ -14,7 +14,7 @@ class Post(object):
         self.category = category
         self.price = price
         self.description = description
-        self.time = datetime.now()
+        self.time = datetime.utcnow()
 
         self.requests = []
         self.deal_request_id = None

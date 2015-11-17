@@ -11,4 +11,4 @@ class Comment(object):
         self.id = None
         self.content = content
         self.nickname = nickname
-        self.time = datetime.now()
+        self.time = datetime.utcnow()
