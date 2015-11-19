@@ -67,7 +67,7 @@
                                             </td>
                                             <td>
                                                 <% if(request.status=="waiting"){ %>
-                                                    <button type="button" value="<%= post.get('id') %> <%= request.id %>" class="request-agree btn btn-success btn-xs">agreee</button>
+                                                    <button type="button" value="<%= post.get('id') %> <%= request.id %>" class="request-agree btn btn-success btn-xs">agree</button>
                                                     <button type="button" value="<%= post.get('id') %> <%= request.id %>" class="request-refuse btn btn-warning btn-xs">refuse</button>
                                                 <% } %>
                                                 <% if(request.status=="agree"){ %>
