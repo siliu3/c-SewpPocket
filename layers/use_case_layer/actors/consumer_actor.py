@@ -43,7 +43,7 @@ class ConsumerActor(UserActor):
     def make_post_request(self,post_id):
         if self.get_consumer().is_contributor:
             if UserRepository().get_contributor(self._user_id).get_post(post_id)!=None:
-                raise RequestSelfPostError("You can not make a request for your own post!")
+                raise RequestSelfPostError("You cannot make a request to your own post!")
         consumer = self.get_consumer()
         return consumer.make_request(post_id)
 
