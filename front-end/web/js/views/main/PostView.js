@@ -132,7 +132,8 @@ define([
         theRequestModel.set('id', request_id);
         theRequestModel.save({ agree: agree},{
           url: "/api/contributor/post/"+post_id+"/request/"+request_id,
-          success: function(model, response) {  
+          success: function(model, response) {
+            $("#success-modal .modal-body").html((agree=="1")?"You have successfully agreed a request~":"You have successfully refused a request~");  
             $('#success-modal').modal('show');
             $('#success-modal').on('hidden.bs.modal', function (e) {
               that.postCollection.fetch({url : "/api/contributor/posts"});
